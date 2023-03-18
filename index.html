@@ -14,21 +14,21 @@
 
     <button class="primary-btn add-book-btn">Add book</button>
 
-    <div class="form-container">
+    <div class="form-container no-display">
         <form action="#" class="form">
-            <label for="title">Book title</label>
-            <input type="text" name="book-title" id="title">
-            <label for="author">Book author</label>
-            <input type="text" name="book-author" id="author">
+            <label for="title">Book title*</label>
+            <input type="text" name="book-title" id="title" required>
+            <label for="author">Book author*</label>
+            <input type="text" name="book-author" id="author" required>
 
             <fieldset class="book-status">
                 <legend>Status</legend>
                 <label for="status-read">Read</label>
-                <input class="status-btn" type="radio" name="status" id="status-read">
+                <input class="status-btn" type="radio" name="status" value="read" id="status-read" required>
                 <label for="status-not-read">Not read</label>
-                <input class="status-btn" type="radio" name="status" id="status-not-read">
+                <input class="status-btn" type="radio" name="status" value="not read" id="status-not-read">
                 <label for="status-curr-reading">Currently reading</label>
-                <input class="status-btn" type="radio" name="status" id="status-curr-reading">
+                <input class="status-btn" type="radio" name="status" value="currently reading" id="status-curr-reading">
             </fieldset>
 
 
