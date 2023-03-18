@@ -11,6 +11,43 @@
 
 <body>
     <h1>myReads</h1>
+
+    <button class="primary-btn add-book-btn">Add book</button>
+
+    <div class="form-container">
+        <form action="#" class="form">
+            <label for="title">Book title</label>
+            <input type="text" name="book-title" id="title">
+            <label for="author">Book author</label>
+            <input type="text" name="book-author" id="author">
+
+            <fieldset class="book-status">
+                <legend>Status</legend>
+                <label for="status-read">Read</label>
+                <input class="status-btn" type="radio" name="status" id="status-read">
+                <label for="status-not-read">Not read</label>
+                <input class="status-btn" type="radio" name="status" id="status-not-read">
+                <label for="status-curr-reading">Currently reading</label>
+                <input class="status-btn" type="radio" name="status" id="status-curr-reading">
+            </fieldset>
+
+
+            <label for="pages">Book pages</label>
+            <input type="number" name="book pages" id="pages">
+            <label for="rating">Rate the book</label>
+            <select name="rate-book" id="rating">
+                <option value="" selected>Choose rating</option>
+                <option value="1-star">1 Star</option>
+                <option value="2-star">2 Stars</option>
+                <option value="3-star">3 Stars</option>
+                <option value="4-star">4 Stars</option>
+                <option value="5-star">5 Stars</option>
+            </select>
+
+            <button id="submit-book-btn" type="submit" class="primary-btn">Submit</button>
+        </form>
+    </div>
+
     <div class="card">
 
     </div>
