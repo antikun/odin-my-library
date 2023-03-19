@@ -20,12 +20,19 @@ const userInput = {
         this.title = document.querySelector("#title").value;
         this.author = document.querySelector("#author").value;
         this.pages = document.querySelector("#pages").value;
-        this.rating = document.querySelector("#rating").value;
 
-        const radioBtns = document.querySelectorAll(".status-btn");
-        for (const radioBtn of radioBtns) {
-            if (radioBtn.checked) {
-                this.status = radioBtn.value;
+        const statusBtns = document.querySelectorAll(".status-btn");
+        for (const statusBtn of statusBtns) {
+            if (statusBtn.checked) {
+                this.status = statusBtn.value;
+                break;
+            }
+        }
+
+        const ratingBtns = document.querySelectorAll(".rating-btn");
+        for (const ratingBtn of ratingBtns) {
+            if (ratingBtn.checked) {
+                this.rating = ratingBtn.value;
                 break;
             }
         }

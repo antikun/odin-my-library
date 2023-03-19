@@ -5,7 +5,6 @@
     --text-main: #000;
     --text-dark: #25130e;
     --text-light: #f3e5dd;
-    --text-medium: #7a3f2e;
     --main-font: "Poppins", sans-serif;
     --heading-font: "Montserrat", sans-serif;
     --h1-size: 65px;
@@ -25,9 +24,11 @@
     /* Colors */
     --bg-white: #fff;
     --bg-grey: #adbbdc;
+    --brown: #7a3f2e;
     --orange-dark: #f48c06;
     --orange-light: #fbb861;
     --blue-dark: #1e90a6;
+    --btn-bg-dark: rgba(0, 0, 0, 0.5);
     --blue-light: #78c8d6;
 
     --standard-border-radius: 10px;
@@ -55,7 +56,8 @@ body {
 main {
     width: 100%;
     max-width: var(--standard-width);
-    margin: var(--spacing-xl) 0 0 0;
+    margin: var(--spacing-lg) 0 0 0;
+    padding: var(--spacing-md);
     position: relative;
     display: flex;
     flex-direction: column;
@@ -150,6 +152,8 @@ p {
     align-items: center;
     width: 100%;
     max-width: var(--standard-width);
+    padding: 0 var(--spacing-md);
+    box-sizing: border-box;
 }
 
 .header h1 {
@@ -165,7 +169,7 @@ p {
 }
 
 .header .add-book-btn:hover {
-    background-color: var(--blue-light);
+    background-color: var(--btn-bg-dark);
     color: var(--text-light);
 }
 
@@ -173,15 +177,15 @@ p {
 
 .form-container {
     width: 600px;
-    max-height: 100vh;
+    max-height: 90vh;
     max-width: 100%;
     position: absolute;
-    top: 0;
+    top: var(--spacing-md);
     border-radius: var(--standard-border-radius);
     background-color: var(--bg-white);
     box-shadow: var(--standard-box-shadow);
     box-sizing: border-box;
-    padding: var(--spacing-lg) var(--spacing-lg);
+    padding: var(--spacing-md) var(--spacing-lg);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -194,16 +198,20 @@ p {
 .form-container .form {
     margin: 0;
     width: calc(100% - (var(--spacing-lg) * 2));
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .form-container .form .input-wrapper {
-    margin: var(--spacing-lg) 0;
+    margin: var(--spacing-md) 0;
     width: 100%;
     position: relative;
 }
 
-.form-container .form .input-wrapper input,
-.form-container .form .input-wrapper select {
+.form .input-wrapper input,
+.form .input-wrapper select {
     padding: var(--spacing-md) 0 var(--spacing-sm);
     appearance: none;
     border: none;
@@ -212,30 +220,58 @@ p {
     box-sizing: border-box;
 }
 
-.form-container .form .input-wrapper input {
+.form .input-wrapper input {
     font-size: var(--standard-text-size);
     color: var(--text-main);
     font-family: var(--main-font);
 }
 
-.form-container .form .input-wrapper .label-normal {
-    display: block;
-    position: absolute;
-    transition: translateY 250ms ease;
-}
-
-.form-container .form .input-wrapper .label-normal.label-move {
-    transform: translateY(-20px);
-}
-
-
-.form-container .form .book-status {
+.form .input-wrapper input:active,
+.form .input-wrapper select:active {
     appearance: none;
     border: none;
-    margin: 0;
+}
+
+.form .input-wrapper input:focus,
+.form .input-wrapper select:focus {
+    appearance: none;
+    border: none;
+    outline: none;
+    border-bottom: 3px solid var(--orange-dark);
+}
+
+.form .input-wrapper .label-normal {
+    display: block;
+    position: absolute;
+    transition: all 250ms ease;
+}
+
+.input-wrapper .label-normal.label-move {
+    transform: translateY(-16px);
+    color: var(--brown);
+}
+
+.form-container .form .fieldset {
+    appearance: none;
+    border: none;
+    margin: var(--spacing-md) 0 0 0;
     padding: var(--spacing-md) 0;
+    align-self: flex-start;
+}
+
+.form .fieldset input,
+.form .fieldset label {
+    cursor: pointer;
+}
+
+
+.form .input-wrapper .rate-label,
+#rating {
+    width: 49%;
+    display: inline-block;
+    box-sizing: border-box;
 }
 
 .form-container .primary-btn {
-    margin: var(--spacing-lg) 0;
+    margin: var(--spacing-md) 0;
 }

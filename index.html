@@ -40,7 +40,12 @@
                     <input type="text" name="book-author" id="author" required>
                 </div>
 
-                <fieldset class="book-status">
+                <div class="input-wrapper">
+                    <label class="label-normal label-move" for="pages">Book pages</label>
+                    <input type="number" name="book pages" id="pages">
+                </div>
+
+                <fieldset class="fieldset">
                     <legend>Status*</legend>
 
                     <input class="status-btn" type="radio" name="status" value="read" id="status-read" required>
@@ -54,12 +59,29 @@
                     <label for="status-curr-reading">Currently reading</label>
                 </fieldset>
 
+                <fieldset class="fieldset">
+                    <legend>Rate the book</legend>
+
+                    <input class="rating-btn" type="radio" name="rating" value="1" id="rating-one">
+                    <label for="rating-one">1 star</label>
+
+                    <input class="rating-btn" type="radio" name="rating" value="2" id="rating-two">
+                    <label for="rating-two">2 stars</label>
+
+                    <input class="rating-btn" type="radio" name="rating" value="3" id="rating-three">
+                    <label for="rating-three">3 stars</label>
+
+                    <input class="rating-btn" type="radio" name="rating" value="4" id="rating-four">
+                    <label for="rating-four">4 stars</label>
+
+                    <input class="rating-btn" type="radio" name="rating" value="5" id="rating-five">
+                    <label for="rating-five">5 stars</label>
+
+                </fieldset>
+
+                <!-- 
                 <div class="input-wrapper">
-                    <label class="label-normal label-move" for="pages">Book pages</label>
-                    <input type="number" name="book pages" id="pages">
-                </div>
-                <div class="input-wrapper">
-                    <label for="rating">Rate the book</label>
+                    <label class="rate-label" for="rating">Rate the book:</label>
                     <select name="rate-book" id="rating">
                         <option value="" selected>Choose rating</option>
                         <option value="1-star">1 Star</option>
@@ -68,8 +90,7 @@
                         <option value="4-star">4 Stars</option>
                         <option value="5-star">5 Stars</option>
                     </select>
-                </div>
-
+                </div> -->
                 <button id="submit-book-btn" type="submit" class="primary-btn">Add</button>
             </form>
         </div>
