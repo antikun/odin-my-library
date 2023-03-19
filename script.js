@@ -56,17 +56,59 @@ function setEventListeners(e) {
 
     addBookBtn.addEventListener("click", toggleDisplay);
 
-    //SUBMIT BOOK 
+    // TEXT INPUTS
 
-    const submitBtn = document.querySelector("#submit-book-btn");
-    submitBtn.addEventListener("click", (e) => {
-        e.preventDefault();
+    const form = document.querySelector(".form");
+    const textInputs = document.querySelectorAll(".text-input");
+    const textInputsArr = [...textInputs];
 
-        userInput.update();
-        userInput.addBookToLibrary();
-        toggleDisplay();
+    function moveLabels(e) {
+        const formLabels = document.querySelectorAll(".label-normal");
+        for (const label of formLabels) {
+            if (label === e.target.labels[0]) {
+                label.classList.add("label-move");
+                break;
+            }
+        }
+    }
+
+
+    function reverseMoveLabels(e) {
+        const formLabels = document.querySelectorAll(".label-normal");
+        for (const label of formLabels) {
+            if (label === e.target.labels[0]) {
+                label.classList.remove("label-move");
+            }
+        }
+    }
+
+    form.addEventListener("focusin", (e) => {
+        if (textInputsArr.includes(e.target)) {
+            moveLabels(e);
+        }
     })
+
+    form.addEventListener("focusout", (e) => {
+        if (textInputsArr.includes(e.target)) {
+            let found = textInputsArr.find(el => el === e.target);
+            if (found.value === "") {
+                reverseMoveLabels(e);
+            }
+        }
+    })
+
 }
+
+//SUBMIT BOOK 
+
+const submitBtn = document.querySelector("#submit-book-btn");
+submitBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    userInput.update();
+    userInput.addBookToLibrary();
+    toggleDisplay();
+})
 
 function main() {
     setEventListeners();

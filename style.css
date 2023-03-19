@@ -249,6 +249,7 @@ p {
 .input-wrapper .label-normal.label-move {
     transform: translateY(-16px);
     color: var(--brown);
+    font-size: 16px;
 }
 
 .form-container .form .fieldset {
