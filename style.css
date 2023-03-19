@@ -23,13 +23,13 @@
 
     /* Colors */
     --bg-white: #fff;
-    --bg-grey: #adbbdc;
+    --bg-grey: #c8d4e8;
     --brown: #7a3f2e;
     --orange-dark: #f48c06;
     --orange-light: #fbb861;
     --blue-dark: #1e90a6;
-    --btn-bg-dark: rgba(0, 0, 0, 0.5);
     --blue-light: #78c8d6;
+    --btn-bg-dark: rgba(0, 0, 0, 0.5);
 
     --standard-border-radius: 10px;
     --standard-box-shadow: 0px 2px 40px rgb(0, 0, 0, 0.4);

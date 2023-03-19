@@ -18,7 +18,7 @@ const userInput = {
     rating: "",
     library: [],
 
-    update() {
+    updateInputs() {
         this.title = document.querySelector("#title").value;
         this.author = document.querySelector("#author").value;
         this.pages = document.querySelector("#pages").value;
@@ -46,6 +46,16 @@ const userInput = {
         const newBook = new Book(title, author, pages, dateRead, status, rating);
         library.push(newBook);
     }
+}
+
+function resetInputs() {
+    const inputs = document.querySelectorAll(".input");
+    inputs.forEach(input => {
+        input.value = "";
+        input.checked = false;
+    })
+    const labels = document.querySelectorAll(".label-normal");
+    labels.forEach(label => label.classList.remove("label-move"));
 }
 
 function setEventListeners(e) {
@@ -113,8 +123,9 @@ function setEventListeners(e) {
     submitBtn.addEventListener("click", (e) => {
         e.preventDefault();
 
-        userInput.update();
+        userInput.updateInputs();
         userInput.addBookToLibrary();
+        resetInputs();
         toggleDisplay();
     })
 }
