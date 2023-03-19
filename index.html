@@ -5,52 +5,64 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="./style.css">
     <title>myReads</title>
 </head>
 
 <body>
-    <h1>myReads</h1>
+    <!-- HEADER -->
+    <header class="header">
+        <img src="./assets/bookshelf.png" alt="bookshelf icon">
+        <h1><span>my</span>Reads</h1>
+        <button class="primary-btn add-book-btn with-icon">
+            <img src="./assets/plus-icon-light.svg" alt="plus sign">
+            Add book
+        </button>
+    </header>
 
-    <button class="primary-btn add-book-btn">Add book</button>
+    <!-- MAIN SECTION -->
+    <main>
+        <!-- FORM -->
+        <div class="form-container no-display">
+            <form action="#" class="form">
+                <label for="title">Book title*</label>
+                <input type="text" name="book-title" id="title" required>
+                <label for="author">Book author*</label>
+                <input type="text" name="book-author" id="author" required>
 
-    <div class="form-container no-display">
-        <form action="#" class="form">
-            <label for="title">Book title*</label>
-            <input type="text" name="book-title" id="title" required>
-            <label for="author">Book author*</label>
-            <input type="text" name="book-author" id="author" required>
-
-            <fieldset class="book-status">
-                <legend>Status</legend>
-                <label for="status-read">Read</label>
-                <input class="status-btn" type="radio" name="status" value="read" id="status-read" required>
-                <label for="status-not-read">Not read</label>
-                <input class="status-btn" type="radio" name="status" value="not read" id="status-not-read">
-                <label for="status-curr-reading">Currently reading</label>
-                <input class="status-btn" type="radio" name="status" value="currently reading" id="status-curr-reading">
-            </fieldset>
+                <fieldset class="book-status">
+                    <legend>Status</legend>
+                    <label for="status-read">Read</label>
+                    <input class="status-btn" type="radio" name="status" value="read" id="status-read" required>
+                    <label for="status-not-read">Not read</label>
+                    <input class="status-btn" type="radio" name="status" value="not read" id="status-not-read">
+                    <label for="status-curr-reading">Currently reading</label>
+                    <input class="status-btn" type="radio" name="status" value="currently reading"
+                        id="status-curr-reading">
+                </fieldset>
 
 
-            <label for="pages">Book pages</label>
-            <input type="number" name="book pages" id="pages">
-            <label for="rating">Rate the book</label>
-            <select name="rate-book" id="rating">
-                <option value="" selected>Choose rating</option>
-                <option value="1-star">1 Star</option>
-                <option value="2-star">2 Stars</option>
-                <option value="3-star">3 Stars</option>
-                <option value="4-star">4 Stars</option>
-                <option value="5-star">5 Stars</option>
-            </select>
+                <label for="pages">Book pages</label>
+                <input type="number" name="book pages" id="pages">
+                <label for="rating">Rate the book</label>
+                <select name="rate-book" id="rating">
+                    <option value="" selected>Choose rating</option>
+                    <option value="1-star">1 Star</option>
+                    <option value="2-star">2 Stars</option>
+                    <option value="3-star">3 Stars</option>
+                    <option value="4-star">4 Stars</option>
+                    <option value="5-star">5 Stars</option>
+                </select>
 
-            <button id="submit-book-btn" type="submit" class="primary-btn">Submit</button>
-        </form>
-    </div>
-
-    <div class="card">
-
-    </div>
+                <button id="submit-book-btn" type="submit" class="primary-btn">Submit</button>
+            </form>
+        </div>
+    </main>
 
     <script src="./script.js"></script>
 </body>

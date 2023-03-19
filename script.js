@@ -43,15 +43,16 @@ function setEventListeners(e) {
     const addBookBtn = document.querySelector(".add-book-btn");
 
     function toggleDisplay() {
-        document.querySelector(".form-container").classList.toggle("no-display");
-        addBookBtn.classList.toggle("no-display");
+        const formContainer = document.querySelector(".form-container");
+        formContainer.classList.toggle("no-display");
     }
 
     addBookBtn.addEventListener("click", toggleDisplay);
 
     //SUBMIT BOOK 
 
-    document.querySelector("#submit-book-btn").addEventListener("click", (e) => {
+    const submitBtn = document.querySelector("#submit-book-btn");
+    submitBtn.addEventListener("click", (e) => {
         e.preventDefault();
 
         userInput.update();
