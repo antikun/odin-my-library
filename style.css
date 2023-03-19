@@ -2,16 +2,17 @@
 
 :root {
     /* Text Styles */
+    --text-main: #000;
     --text-dark: #25130e;
     --text-light: #f3e5dd;
-    --text-grey: #adbbdc;
+    --text-medium: #7a3f2e;
     --main-font: "Poppins", sans-serif;
     --heading-font: "Montserrat", sans-serif;
     --h1-size: 65px;
     --h2-size: 50px;
     --h3-size: 40px;
-    --p-size: 18px;
-    --p-height: 26px;
+    --standard-text-size: 18px;
+    --standard-text-height: 26px;
     --btn-size: 16px;
 
     /*Spacing */
@@ -23,6 +24,7 @@
 
     /* Colors */
     --bg-white: #fff;
+    --bg-grey: #adbbdc;
     --orange-dark: #f48c06;
     --orange-light: #fbb861;
     --blue-dark: #1e90a6;
@@ -38,11 +40,12 @@ body {
     margin: 0;
     padding: 0;
     font-family: var(--main-font);
-    color: var(--text-dark);
+    font-size: var(--standard-text-size);
+    color: var(--text-main);
     box-sizing: border-box;
     margin: 0;
     padding: var(--spacing-sm) 0 0;
-    background-color: var(--bg-white);
+    background-color: var(--bg-grey);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -51,7 +54,12 @@ body {
 
 main {
     width: 100%;
+    max-width: var(--standard-width);
     margin: var(--spacing-xl) 0 0 0;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 h1 {
@@ -79,8 +87,8 @@ h3 {
 }
 
 p {
-    font-size: var(--p-size);
-    line-height: var(--p-height);
+    font-size: var(--standard-text-size);
+    line-height: var(--standard-text-height);
     font-weight: 400;
     margin: var(--spacing-md) 0;
 }
@@ -163,6 +171,71 @@ p {
 
 /* FORM STYLES */
 
+.form-container {
+    width: 600px;
+    max-height: 100vh;
+    max-width: 100%;
+    position: absolute;
+    top: 0;
+    border-radius: var(--standard-border-radius);
+    background-color: var(--bg-white);
+    box-shadow: var(--standard-box-shadow);
+    box-sizing: border-box;
+    padding: var(--spacing-lg) var(--spacing-lg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .form-container.no-display {
     display: none;
+}
+
+.form-container .form {
+    margin: 0;
+    width: calc(100% - (var(--spacing-lg) * 2));
+}
+
+.form-container .form .input-wrapper {
+    margin: var(--spacing-lg) 0;
+    width: 100%;
+    position: relative;
+}
+
+.form-container .form .input-wrapper input,
+.form-container .form .input-wrapper select {
+    padding: var(--spacing-md) 0 var(--spacing-sm);
+    appearance: none;
+    border: none;
+    border-bottom: 2px solid var(--text-main);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.form-container .form .input-wrapper input {
+    font-size: var(--standard-text-size);
+    color: var(--text-main);
+    font-family: var(--main-font);
+}
+
+.form-container .form .input-wrapper .label-normal {
+    display: block;
+    position: absolute;
+    transition: translateY 250ms ease;
+}
+
+.form-container .form .input-wrapper .label-normal.label-move {
+    transform: translateY(-20px);
+}
+
+
+.form-container .form .book-status {
+    appearance: none;
+    border: none;
+    margin: 0;
+    padding: var(--spacing-md) 0;
+}
+
+.form-container .primary-btn {
+    margin: var(--spacing-lg) 0;
 }
