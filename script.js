@@ -1,8 +1,9 @@
 class Book {
-    constructor(title, author, pages, status, rating) {
+    constructor(title, author, pages, dateRead, status, rating) {
         this.title = title;
         this.author = author;
         this.pages = pages;
+        this.dateRead = dateRead;
         this.status = status;
         this.rating = rating;
     }
@@ -12,6 +13,7 @@ const userInput = {
     title: "",
     author: "",
     pages: "",
+    dateRead: "",
     status: "",
     rating: "",
     library: [],
@@ -20,6 +22,7 @@ const userInput = {
         this.title = document.querySelector("#title").value;
         this.author = document.querySelector("#author").value;
         this.pages = document.querySelector("#pages").value;
+        this.dateRead = document.querySelector("#date-read").value;
 
         const statusBtns = document.querySelectorAll(".status-btn");
         for (const statusBtn of statusBtns) {
@@ -39,8 +42,8 @@ const userInput = {
     },
 
     addBookToLibrary() {
-        const { title, author, pages, status, rating, library } = this;
-        const newBook = new Book(title, author, pages, status, rating);
+        const { title, author, pages, dateRead, status, rating, library } = this;
+        const newBook = new Book(title, author, pages, dateRead, status, rating);
         library.push(newBook);
     }
 }
@@ -63,6 +66,11 @@ function setEventListeners(e) {
     const textInputsArr = [...textInputs];
 
     function moveLabels(e) {
+        if (textInputsArr.includes(e.target)) {
+            if (e.target === document.querySelector("#date-read")) {
+                e.target.type = "date";
+            }
+        }
         const formLabels = document.querySelectorAll(".label-normal");
         for (const label of formLabels) {
             if (label === e.target.labels[0]) {
@@ -71,7 +79,6 @@ function setEventListeners(e) {
             }
         }
     }
-
 
     function reverseMoveLabels(e) {
         const formLabels = document.querySelectorAll(".label-normal");
@@ -92,23 +99,26 @@ function setEventListeners(e) {
         if (textInputsArr.includes(e.target)) {
             let found = textInputsArr.find(el => el === e.target);
             if (found.value === "") {
+                if (e.target === document.querySelector("#date-read")) {
+                    e.target.type = "text";
+                }
                 reverseMoveLabels(e);
             }
         }
     })
 
+    //SUBMIT BOOK 
+
+    const submitBtn = document.querySelector("#submit-book-btn");
+    submitBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        userInput.update();
+        userInput.addBookToLibrary();
+        toggleDisplay();
+    })
 }
 
-//SUBMIT BOOK 
-
-const submitBtn = document.querySelector("#submit-book-btn");
-submitBtn.addEventListener("click", (e) => {
-    e.preventDefault();
-
-    userInput.update();
-    userInput.addBookToLibrary();
-    toggleDisplay();
-})
 
 function main() {
     setEventListeners();

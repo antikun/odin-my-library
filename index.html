@@ -28,58 +28,71 @@
     <!-- MAIN SECTION -->
     <main>
         <!-- FORM -->
-        <div class="form-container ">
-            <form action="#" class="form">
-                <p>Fields marked with * are required.</p>
-                <div class="input-wrapper">
-                    <label class="label-normal" for="title">Book title*</label>
-                    <input class="text-input" type="text" name="book-title" id="title" required>
-                </div>
-                <div class="input-wrapper">
-                    <label class="label-normal" for="author">Book author*</label>
-                    <input class="text-input" type="text" name="book-author" id="author" required>
-                </div>
+        <div class="form-container no-display">
+            <form class="form" action="#">
+                <fieldset class="form-field">
+                    <legend class="requirements">
+                        Fields marked with * are required.
+                    </legend>
+                    <div class="input-wrapper">
+                        <label class="label-normal" for="title">Book title*</label>
+                        <input class="text-input" type="text" name="book-title" id="title" required>
+                    </div>
+                    <div class="input-wrapper">
+                        <label class="label-normal" for="author">Book author*</label>
+                        <input class="text-input" type="text" name="book-author" id="author" required>
+                    </div>
 
-                <div class="input-wrapper">
-                    <label class="label-normal" for="pages">Book pages</label>
-                    <input class="text-input" type="number" name="book pages" id="pages">
-                </div>
+                    <div class="input-wrapper">
+                        <div class="half-width">
+                            <label class="label-normal" for="pages">Book pages</label>
+                            <input class="text-input" type="number" name="book pages" id="pages">
+                        </div>
+                        <div class="half-width">
+                            <label class="label-normal" for="date-read">Date read</label>
+                            <input class="text-input" type="text" name="date read" id="date-read">
+                        </div>
+                    </div>
 
-                <fieldset class="fieldset">
-                    <legend>Status*</legend>
 
-                    <input class="status-btn" type="radio" name="status" value="read" id="status-read" required>
-                    <label for="status-read">Read</label>
+                    <fieldset class="fieldset">
+                        <legend>Status*</legend>
 
-                    <input class="status-btn" type="radio" name="status" value="not read" id="status-not-read">
-                    <label for="status-not-read">Not read</label>
+                        <input class="status-btn" type="radio" name="status" value="read" id="status-read" required>
+                        <label for="status-read">Read</label>
 
-                    <input class="status-btn" type="radio" name="status" value="currently reading"
-                        id="status-curr-reading">
-                    <label for="status-curr-reading">Currently reading</label>
+                        <input class="status-btn" type="radio" name="status" value="not read" id="status-not-read">
+                        <label for="status-not-read">Not read</label>
+
+                        <input class="status-btn" type="radio" name="status" value="currently reading"
+                            id="status-curr-reading">
+                        <label for="status-curr-reading">Currently reading</label>
+                    </fieldset>
+
+                    <fieldset class="fieldset">
+                        <legend>Rate the book</legend>
+
+                        <input class="rating-btn" type="radio" name="rating" value="1" id="rating-one">
+                        <label for="rating-one">1 star</label>
+
+                        <input class="rating-btn" type="radio" name="rating" value="2" id="rating-two">
+                        <label for="rating-two">2 stars</label>
+
+                        <input class="rating-btn" type="radio" name="rating" value="3" id="rating-three">
+                        <label for="rating-three">3 stars</label>
+
+                        <input class="rating-btn" type="radio" name="rating" value="4" id="rating-four">
+                        <label for="rating-four">4 stars</label>
+
+                        <input class="rating-btn" type="radio" name="rating" value="5" id="rating-five">
+                        <label for="rating-five">5 stars</label>
+
+                    </fieldset>
+
+                    <button id="submit-book-btn" type="submit" class="primary-btn">Add</button>
+
                 </fieldset>
 
-                <fieldset class="fieldset">
-                    <legend>Rate the book</legend>
-
-                    <input class="rating-btn" type="radio" name="rating" value="1" id="rating-one">
-                    <label for="rating-one">1 star</label>
-
-                    <input class="rating-btn" type="radio" name="rating" value="2" id="rating-two">
-                    <label for="rating-two">2 stars</label>
-
-                    <input class="rating-btn" type="radio" name="rating" value="3" id="rating-three">
-                    <label for="rating-three">3 stars</label>
-
-                    <input class="rating-btn" type="radio" name="rating" value="4" id="rating-four">
-                    <label for="rating-four">4 stars</label>
-
-                    <input class="rating-btn" type="radio" name="rating" value="5" id="rating-five">
-                    <label for="rating-five">5 stars</label>
-
-                </fieldset>
-
-                <button id="submit-book-btn" type="submit" class="primary-btn">Add</button>
             </form>
         </div>
     </main>

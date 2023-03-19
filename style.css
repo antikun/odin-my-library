@@ -95,6 +95,13 @@ p {
     margin: var(--spacing-md) 0;
 }
 
+fieldset {
+    appearance: none;
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+
 
 /* LAYOUT STYLES */
 
@@ -196,22 +203,51 @@ p {
 }
 
 .form-container .form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-container .form-field {
     margin: 0;
+    padding: 0 0 var(--spacing-lg) 0;
     width: calc(100% - (var(--spacing-lg) * 2));
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    appearance: none;
+    border: none;
 }
 
-.form-container .form .input-wrapper {
+.form-container .form-field .requirements {
+    margin: 0 0 var(--spacing-md) 0;
+    padding: var(--spacing-lg) 0 0 0;
+    text-align: center;
+}
+
+.form-container .form-field .input-wrapper {
     margin: var(--spacing-md) 0;
     width: 100%;
     position: relative;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: var(--spacing-sm);
 }
 
-.form .input-wrapper input,
-.form .input-wrapper select {
+.form-field .input-wrapper .half-width {
+    display: inline-block;
+    width: 50%;
+    margin: 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.form-field .input-wrapper input,
+.form-field .input-wrapper select {
     padding: var(--spacing-md) 0 var(--spacing-sm);
     appearance: none;
     border: none;
@@ -220,39 +256,43 @@ p {
     box-sizing: border-box;
 }
 
-.form .input-wrapper input {
+.form-field .input-wrapper input {
     font-size: var(--standard-text-size);
     color: var(--text-main);
     font-family: var(--main-font);
 }
 
-.form .input-wrapper input:active,
-.form .input-wrapper select:active {
+.form-field .input-wrapper input:active,
+.form-field .input-wrapper select:active {
     appearance: none;
     border: none;
 }
 
-.form .input-wrapper input:focus,
-.form .input-wrapper select:focus {
+.form-field .input-wrapper input:focus,
+.form-field .input-wrapper select:focus {
     appearance: none;
     border: none;
     outline: none;
     border-bottom: 3px solid var(--orange-dark);
 }
 
-.form .input-wrapper .label-normal {
+#date-read {
+    margin-top: -2px;
+}
+
+.form-field .input-wrapper .label-normal {
     display: block;
     position: absolute;
     transition: all 250ms ease;
 }
 
 .input-wrapper .label-normal.label-move {
-    transform: translateY(-16px);
+    transform: translateY(-24px);
     color: var(--brown);
     font-size: 16px;
 }
 
-.form-container .form .fieldset {
+.form-container .form-field .fieldset {
     appearance: none;
     border: none;
     margin: var(--spacing-md) 0 0 0;
@@ -260,17 +300,9 @@ p {
     align-self: flex-start;
 }
 
-.form .fieldset input,
-.form .fieldset label {
+.form-field .fieldset input,
+.form-field .fieldset label {
     cursor: pointer;
-}
-
-
-.form .input-wrapper .rate-label,
-#rating {
-    width: 49%;
-    display: inline-block;
-    box-sizing: border-box;
 }
 
 .form-container .primary-btn {
