@@ -33,16 +33,16 @@
                 <button class="close-form-btn"><img src="./assets/cross-close-icon.svg" alt="cross close icon"
                         class="close-form-icon"></button>
                 <fieldset class="form-field">
-                    <legend class="requirements">
+                    <legend class="label requirements">
                         Fields marked with * are required.
                     </legend>
                     <div class="input-wrapper">
                         <label class="label-normal" for="title">Book title*</label>
-                        <input class="input text-input" type="text" name="book-title" id="title" required>
+                        <input class="required input text-input" type="text" name="book-title" id="title" required>
                     </div>
                     <div class="input-wrapper">
                         <label class="label-normal" for="author">Book author*</label>
-                        <input class="input text-input" type="text" name="book-author" id="author" required>
+                        <input class="required input text-input" type="text" name="book-author" id="author" required>
                     </div>
 
                     <div class="input-wrapper">
@@ -58,19 +58,19 @@
 
 
                     <fieldset class="fieldset">
-                        <legend>Status*</legend>
+                        <legend class="label">Status*</legend>
 
-                        <input class="input status-btn" type="radio" name="status" value="read" id="status-read"
-                            required>
-                        <label for="status-read">Read</label>
+                        <input class="required input status-btn" type="radio" name="status" value="read"
+                            id="status-read" required>
+                        <label class="status-label" for="status-read">Read</label>
 
                         <input class="input status-btn" type="radio" name="status" value="not read"
                             id="status-not-read">
-                        <label for="status-not-read">Not read</label>
+                        <label class="status-label" for="status-not-read">Not read</label>
 
                         <input class="input status-btn" type="radio" name="status" value="currently reading"
                             id="status-curr-reading">
-                        <label for="status-curr-reading">Currently reading</label>
+                        <label class="status-label" for="status-curr-reading">Currently reading</label>
                     </fieldset>
 
                     <fieldset class="fieldset">

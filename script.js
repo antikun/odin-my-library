@@ -6,6 +6,10 @@ class Book {
         this.dateRead = dateRead;
         this.status = status;
         this.rating = rating;
+        this.id = this.generateId();
+    }
+    generateId() {
+        return Date.now().toString(36) + Math.floor(Math.pow(10, 12) + Math.random() * 9 * Math.pow(10, 12)).toString(36);
     }
 }
 
@@ -22,7 +26,13 @@ const userInput = {
         this.title = document.querySelector("#title").value;
         this.author = document.querySelector("#author").value;
         this.pages = document.querySelector("#pages").value;
-        this.dateRead = document.querySelector("#date-read").value;
+
+        const dateInput = document.querySelector("#date-read").value;
+        if (dateInput.value === "") {
+            this.dateRead = "not set"
+        } else if (!dateInput.value === "") {
+            this.dateRead = new Date(dateInput.value).toLocaleDateString();
+        }
 
         const statusBtns = document.querySelectorAll(".status-btn");
         for (const statusBtn of statusBtns) {
@@ -57,7 +67,7 @@ const userInput = {
                 <li>Status: <span class="card-data card-status">${this.status}</span></li>
                 <li>Date read: <span class="card-data card-date">${this.dateRead}</span></li>
             </ul>
-            <button class="primary-btn remove-book">Remove book</button>
+            <button class="primary-btn remove-book-btn">Remove book</button>
         `;
         return htmlMarkup;
     },
@@ -71,6 +81,33 @@ const userInput = {
     }
 }
 
+// function checkForEmptyInputs() {
+//     const inputs = document.querySelectorAll(".required");
+//     let empty;
+//     inputs.forEach(input => {
+//         empty = (input.value !== "") ? false : true
+//     })
+//     return empty;
+// }
+
+function checkRequiredFields() {
+    const labels = document.querySelectorAll(".label");
+    const inputs = document.querySelectorAll(".required");
+    const emptyFields = [];
+    inputs.forEach(input => {
+        if (input.type === "text" && input.value === "" ||
+            input.type === "radio" && input.checked === false) {
+            emptyFields.push(input);
+        }
+    })
+    emptyFields.forEach(field => {
+        if (field.type === "text") {
+            field.focus();
+            field.labels[0].classList.add("alert");
+        }
+        labels.forEach(label => label.classList.add("alert"));
+    })
+}
 
 function resetInputs() {
     const inputs = document.querySelectorAll(".input");
@@ -157,13 +194,16 @@ function setEventListeners(e) {
     const submitBtn = document.querySelector("#submit-book-btn");
     submitBtn.addEventListener("click", (e) => {
         e.preventDefault();
-
-        userInput.updateInputs();
-        userInput.addBookToLibrary();
-        userInput.addBookToCard();
-        userInput.appendBookToDOM();
-        resetInputs();
-        toggleDisplay();
+        checkRequiredFields();
+        // const check = checkForEmptyInputs();
+        // if (check === false) {
+        // userInput.updateInputs();
+        // userInput.addBookToLibrary();
+        // userInput.addBookToCard();
+        // userInput.appendBookToDOM();
+        // }
+        // resetInputs();
+        // toggleDisplay();
     })
 }
 

@@ -29,6 +29,8 @@
     --brown: #7a3f2e;
     --orange-dark: #f48c06;
     --orange-light: #fbb861;
+    --red-dark: #510a0f;
+    --red-light: #e63946;
     --blue-dark: #1e90a6;
     --blue-light: #78c8d6;
     --btn-bg-dark: rgba(0, 0, 0, 0.5);
@@ -372,4 +374,21 @@ ul {
 
 .form-container .primary-btn {
     margin: var(--spacing-md) 0;
+}
+
+.form-container .label-move.alert,
+.form-container .requirements.alert,
+.fieldset .label.alert {
+    color: var(--red-light);
+}
+
+/* CARD STYLES */
+
+.book-cards-container .card .remove-book-btn {
+    background-color: var(--red-light);
+}
+
+.book-cards-container .card .remove-book-btn:hover {
+    background-color: var(--red-dark);
+    color: var(--bg-white);
 }
