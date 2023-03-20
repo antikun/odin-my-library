@@ -253,8 +253,24 @@ ul {
 
 .form-container .form {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.form-container .form .close-form-btn {
+    border: none;
+}
+
+.form-container .form .close-form-btn:hover {
+    cursor: pointer;
+}
+
+.form-container .form .close-form-icon {
+    width: 20px;
+    position: absolute;
+    top: var(--spacing-md);
+    right: var(--spacing-md);
 }
 
 .form-container .form-field {

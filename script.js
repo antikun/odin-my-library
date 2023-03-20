@@ -69,6 +69,15 @@ function setEventListeners(e) {
 
     addBookBtn.addEventListener("click", toggleDisplay);
 
+    // INPUT FORM CLOSE
+
+    const formCloseBtn = document.querySelector(".close-form-btn");
+    formCloseBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        toggleDisplay();
+        resetInputs();
+    })
+
     // TEXT INPUTS
 
     const form = document.querySelector(".form");
