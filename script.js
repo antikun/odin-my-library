@@ -45,8 +45,32 @@ const userInput = {
         const { title, author, pages, dateRead, status, rating, library } = this;
         const newBook = new Book(title, author, pages, dateRead, status, rating);
         library.push(newBook);
+    },
+
+    addBookToCard() {
+        const htmlMarkup = `
+            <h3>"<span class="card-title">${this.title}</span>"</h3>
+            <p><span>by</span><span class="card-author">${this.author}</span></p>
+            <ul>
+                <li>Rated at: <span class="card-data card-rating">${this.rating}</span></li>
+                <li>Total of <span class="card-data card-pages">${this.pages} pages</span></li>
+                <li>Status: <span class="card-data card-status">${this.status}</span></li>
+                <li>Date read: <span class="card-data card-date">${this.dateRead}</span></li>
+            </ul>
+            <button class="primary-btn remove-book">Remove book</button>
+        `;
+        return htmlMarkup;
+    },
+
+    appendBookToDOM() {
+        const bookGrid = document.querySelector(".book-cards-container");
+        const newCard = document.createElement("div");
+        newCard.classList.add("card");
+        newCard.innerHTML = this.addBookToCard();
+        bookGrid.append(newCard);
     }
 }
+
 
 function resetInputs() {
     const inputs = document.querySelectorAll(".input");
@@ -56,6 +80,8 @@ function resetInputs() {
     })
     const labels = document.querySelectorAll(".label-normal");
     labels.forEach(label => label.classList.remove("label-move"));
+    const dateRead = document.querySelector("#date-read");
+    dateRead.type = "text";
 }
 
 function setEventListeners(e) {
@@ -134,6 +160,8 @@ function setEventListeners(e) {
 
         userInput.updateInputs();
         userInput.addBookToLibrary();
+        userInput.addBookToCard();
+        userInput.appendBookToDOM();
         resetInputs();
         toggleDisplay();
     })
