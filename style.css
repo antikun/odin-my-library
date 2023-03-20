@@ -376,7 +376,7 @@ ul {
     margin: var(--spacing-md) 0;
 }
 
-.form-container .label-move.alert,
+.form-container .label-normal.alert,
 .form-container .requirements.alert,
 .fieldset .label.alert {
     color: var(--red-light);

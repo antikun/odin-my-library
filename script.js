@@ -81,28 +81,25 @@ const userInput = {
     }
 }
 
-// function checkForEmptyInputs() {
-//     const inputs = document.querySelectorAll(".required");
-//     let empty;
-//     inputs.forEach(input => {
-//         empty = (input.value !== "") ? false : true
-//     })
-//     return empty;
-// }
-
 function checkRequiredFields() {
     const labels = document.querySelectorAll(".label");
     const inputs = document.querySelectorAll(".required");
     const emptyFields = [];
+
+    inputs.forEach(input => input.labels[0].classList.remove("alert"));
+    labels.forEach(label => label.classList.remove("alert"));
+
     inputs.forEach(input => {
         if (input.type === "text" && input.value === "" ||
             input.type === "radio" && input.checked === false) {
             emptyFields.push(input);
         }
     })
-    emptyFields.forEach(field => {
-        if (field.type === "text") {
+    emptyFields.forEach((field, index) => {
+        if (index === 0) {
             field.focus();
+        }
+        if (field.type === "text") {
             field.labels[0].classList.add("alert");
         }
         labels.forEach(label => label.classList.add("alert"));
