@@ -86,9 +86,12 @@ function checkRequiredFields() {
     const inputs = document.querySelectorAll(".required");
     const emptyFields = [];
 
+    // reset everything
+    emptyFields.splice(0, emptyFields.length);
     inputs.forEach(input => input.labels[0].classList.remove("alert"));
     labels.forEach(label => label.classList.remove("alert"));
 
+    // evaluate
     inputs.forEach(input => {
         if (input.type === "text" && input.value === "" ||
             input.type === "radio" && input.checked === false) {
@@ -104,6 +107,7 @@ function checkRequiredFields() {
         }
         labels.forEach(label => label.classList.add("alert"));
     })
+    return emptyFields.length;
 }
 
 function resetInputs() {
@@ -192,15 +196,17 @@ function setEventListeners(e) {
     submitBtn.addEventListener("click", (e) => {
         e.preventDefault();
         checkRequiredFields();
-        // const check = checkForEmptyInputs();
-        // if (check === false) {
-        // userInput.updateInputs();
-        // userInput.addBookToLibrary();
-        // userInput.addBookToCard();
-        // userInput.appendBookToDOM();
-        // }
-        // resetInputs();
-        // toggleDisplay();
+        const check = checkRequiredFields();
+        if (check > 2) {
+            return;
+        } else {
+            userInput.updateInputs();
+            userInput.addBookToLibrary();
+            userInput.addBookToCard();
+            userInput.appendBookToDOM();
+            resetInputs();
+            toggleDisplay();
+        }
     })
 }
 
