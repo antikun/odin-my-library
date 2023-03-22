@@ -20,17 +20,30 @@ const userInput = {
     dateRead: "",
     status: "",
     rating: "",
+    bookId: "",
+    isEmpty: true,
     library: [],
+
+    resetUserData() {
+        let { title, author, pages, dateRead, status, rating, bookId } = this;
+        title = "";
+        author = "";
+        pages = "";
+        dateRead = "";
+        status = "";
+        rating = "";
+        bookId = "";
+    },
 
     updateInputs() {
         this.title = document.querySelector("#title").value;
         this.author = document.querySelector("#author").value;
         this.pages = document.querySelector("#pages").value;
 
-        const dateInput = document.querySelector("#date-read").value;
+        const dateInput = document.querySelector("#date-read");
         if (dateInput.value === "") {
             this.dateRead = "not set"
-        } else if (!dateInput.value === "") {
+        } else {
             this.dateRead = new Date(dateInput.value).toLocaleDateString();
         }
 
@@ -38,7 +51,6 @@ const userInput = {
         for (const statusBtn of statusBtns) {
             if (statusBtn.checked) {
                 this.status = statusBtn.value;
-                break;
             }
         }
 
@@ -46,7 +58,6 @@ const userInput = {
         for (const ratingBtn of ratingBtns) {
             if (ratingBtn.checked) {
                 this.rating = ratingBtn.value;
-                break;
             }
         }
     },
@@ -54,6 +65,7 @@ const userInput = {
     addBookToLibrary() {
         const { title, author, pages, dateRead, status, rating, library } = this;
         const newBook = new Book(title, author, pages, dateRead, status, rating);
+        this.bookId = newBook.id;
         library.push(newBook);
     },
 
@@ -76,51 +88,78 @@ const userInput = {
         const bookGrid = document.querySelector(".book-cards-container");
         const newCard = document.createElement("div");
         newCard.classList.add("card");
+        newCard.dataset.bookId = this.bookId;
         newCard.innerHTML = this.addBookToCard();
         bookGrid.append(newCard);
+    },
+
+    removeBookFromLibrary(idnum) {
+        const isCorrectBook = (element) => element.id === idnum;
+        const found = this.library.findIndex(isCorrectBook);
+        this.library.splice(found, 1);
     }
 }
 
 function checkRequiredFields() {
-    const labels = document.querySelectorAll(".label");
-    const inputs = document.querySelectorAll(".required");
+    const radioLegend = document.querySelector(".radio-legend");
+    const generalLegend = document.querySelector(".general-legend");
+    const textInputs = document.querySelectorAll(".required-text");
+    const radioInputs = [...document.querySelectorAll(".required-radio")];
+    const checked = (element) => element.checked === true;
+
     const emptyFields = [];
 
     // reset everything
-    emptyFields.splice(0, emptyFields.length);
-    inputs.forEach(input => input.labels[0].classList.remove("alert"));
-    labels.forEach(label => label.classList.remove("alert"));
+    userInput.isEmpty = true;
+    textInputs.forEach(input => input.labels[0].classList.remove("alert"));
+    generalLegend.classList.remove("alert");
+    radioLegend.classList.remove("alert");
 
     // evaluate
-    inputs.forEach(input => {
-        if (input.type === "text" && input.value === "" ||
-            input.type === "radio" && input.checked === false) {
+    textInputs.forEach(input => {
+        if (input.value === "") {
             emptyFields.push(input);
         }
     })
+
+    if (emptyFields.length === 0 && radioInputs.some(checked)) {
+        userInput.isEmpty = false;
+        return;
+    }
+
     emptyFields.forEach((field, index) => {
         if (index === 0) {
             field.focus();
         }
-        if (field.type === "text") {
-            field.labels[0].classList.add("alert");
-        }
-        labels.forEach(label => label.classList.add("alert"));
+        field.labels[0].classList.add("alert");
+        generalLegend.classList.add("alert");
     })
-    return emptyFields.length;
+
+    if (!radioInputs.some(checked)) {
+        radioLegend.classList.add("alert");
+        generalLegend.classList.add("alert");
+    }
+
+    emptyFields.splice(0, emptyFields.length);
 }
 
 function resetInputs() {
     const inputs = document.querySelectorAll(".input");
     inputs.forEach(input => {
-        input.value = "";
-        input.checked = false;
+        if (input.type === "radio") {
+            input.checked = false;
+        } else {
+            input.value = "";
+        }
+
     })
     const labels = document.querySelectorAll(".label-normal");
     labels.forEach(label => label.classList.remove("label-move"));
     const dateRead = document.querySelector("#date-read");
     dateRead.type = "text";
 }
+
+// EVENT LISTENERS
 
 function setEventListeners(e) {
     // INPUT FORM POPUP
@@ -147,6 +186,7 @@ function setEventListeners(e) {
     const form = document.querySelector(".form");
     const textInputs = document.querySelectorAll(".text-input");
     const textInputsArr = [...textInputs];
+    const formLabels = document.querySelectorAll(".label-normal");
 
     function moveLabels(e) {
         if (textInputsArr.includes(e.target)) {
@@ -154,7 +194,6 @@ function setEventListeners(e) {
                 e.target.type = "date";
             }
         }
-        const formLabels = document.querySelectorAll(".label-normal");
         for (const label of formLabels) {
             if (label === e.target.labels[0]) {
                 label.classList.add("label-move");
@@ -164,7 +203,6 @@ function setEventListeners(e) {
     }
 
     function reverseMoveLabels(e) {
-        const formLabels = document.querySelectorAll(".label-normal");
         for (const label of formLabels) {
             if (label === e.target.labels[0]) {
                 label.classList.remove("label-move");
@@ -190,22 +228,38 @@ function setEventListeners(e) {
         }
     })
 
+    // update label color if inputs are filled
+    form.addEventListener("change", checkRequiredFields)
+
     //SUBMIT BOOK 
 
     const submitBtn = document.querySelector("#submit-book-btn");
     submitBtn.addEventListener("click", (e) => {
         e.preventDefault();
         checkRequiredFields();
-        const check = checkRequiredFields();
-        if (check > 2) {
+        if (userInput.isEmpty === true) {
             return;
+        }
+        userInput.updateInputs();
+        userInput.addBookToLibrary();
+        userInput.addBookToCard();
+        userInput.appendBookToDOM();
+        resetInputs();
+        toggleDisplay();
+        userInput.resetUserData();
+    })
+
+    // REMOVE CARD FROM DOM AND BOOK FROM LIBRARY
+
+    const bookContainer = document.querySelector(".book-cards-container");
+    bookContainer.addEventListener("click", (e) => {
+        if (e.target.classList.contains("remove-book-btn")) {
+            e.preventDefault();
+            const idnum = e.target.parentNode.dataset.bookId;
+            userInput.removeBookFromLibrary(idnum);
+            e.target.parentNode.remove();
         } else {
-            userInput.updateInputs();
-            userInput.addBookToLibrary();
-            userInput.addBookToCard();
-            userInput.appendBookToDOM();
-            resetInputs();
-            toggleDisplay();
+            return;
         }
     })
 }

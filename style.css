@@ -378,7 +378,7 @@ ul {
 
 .form-container .label-normal.alert,
 .form-container .requirements.alert,
-.fieldset .label.alert {
+.fieldset .alert {
     color: var(--red-light);
 }
 
