@@ -21,7 +21,7 @@
     --spacing-md: 16px;
     --spacing-lg: 32px;
     --spacing-xl: 64px;
-    --standard-width: 1144px;
+    --standard-width: 1180px;
 
     /* Colors */
     --bg-white: #fff;
@@ -128,8 +128,8 @@ ul {
 .card {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
+    justify-content: space-between;
+    align-items: center;
     width: 100%;
     background-color: var(--bg-white);
     padding: var(--spacing-lg) var(--spacing-md);
@@ -158,10 +158,6 @@ ul {
 
 .card ul {
     padding: 0 var(--spacing-md) var(--spacing-lg);
-}
-
-.card button {
-    align-self: center;
 }
 
 .card .card-data {
@@ -391,4 +387,79 @@ ul {
 .book-cards-container .card .remove-book-btn:hover {
     background-color: var(--red-dark);
     color: var(--bg-white);
+}
+
+/* SMALL SCREEN */
+
+@media only screen and (max-width: 1048px) {
+    .book-cards-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* 
+@media only screen and (max-width: 870px) {
+    .header {
+        padding: 0 var(--spacing-sm);
+    }
+
+    .book-cards-container {
+        padding: var(--spacing-md) var(--spacing-sm);
+        gap: var(--spacing-sm);
+    }
+} */
+
+/* TABLET SIZE */
+
+@media only screen and (max-width: 800px) {
+    .header {
+        padding: 0 var(--spacing-sm);
+    }
+
+    .book-cards-container {
+        padding: var(--spacing-md) var(--spacing-sm);
+        gap: var(--spacing-sm);
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* MOBILE SIZE */
+
+@media only screen and (max-width: 550px) {
+    main {
+        margin: var(--spacing-md) 0 0 0;
+    }
+
+    .header {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: var(--spacing-md);
+        padding: 0 var(--spacing-md);
+    }
+
+    .header>img {
+        display: none;
+    }
+
+    .header h1 {
+        font-size: var(--h2-size);
+    }
+
+    .header .primary-btn.fixed {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 2;
+        min-width: 50px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+    }
+
+    .book-cards-container {
+        padding: var(--spacing-md) var(--spacing-md);
+        gap: var(--spacing-md);
+        grid-template-columns: 1fr;
+    }
 }
