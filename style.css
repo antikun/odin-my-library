@@ -229,23 +229,31 @@ ul {
 
 /* FORM STYLES */
 
-.form-container {
-    width: 600px;
-    max-height: 90vh;
-    max-width: 100%;
+.modal-outer {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    height: calc(100vh - 150px);
     position: absolute;
-    top: var(--spacing-md);
-    border-radius: var(--standard-border-radius);
-    background-color: var(--bg-white);
-    box-shadow: var(--standard-box-shadow);
-    box-sizing: border-box;
-    padding: var(--spacing-md) var(--spacing-lg);
+    top: 0;
+    left: 0;
+    backdrop-filter: blur(2px);
+}
+
+.form-container {
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
+    min-width: 550px;
+    max-width: 600px;
+    padding: 0 var(--spacing-md);
+    position: relative;
+    box-sizing: border-box;
 }
 
-.form-container.no-display {
+.modal-outer.no-display {
     display: none;
 }
 
@@ -254,6 +262,14 @@ ul {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 100%;
+    position: absolute;
+    top: var(--spacing-md);
+    border-radius: var(--standard-border-radius);
+    background-color: var(--bg-white);
+    box-shadow: var(--standard-box-shadow);
+    box-sizing: border-box;
+    padding: var(--spacing-md) var(--spacing-lg);
 }
 
 .form-container .form .close-form-btn {
@@ -273,8 +289,7 @@ ul {
 
 .form-container .form-field {
     margin: 0;
-    padding: 0 0 var(--spacing-lg) 0;
-    width: calc(100% - (var(--spacing-lg) * 2));
+    padding: 0 var(--spacing-sm);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -397,18 +412,6 @@ ul {
     }
 }
 
-/* 
-@media only screen and (max-width: 870px) {
-    .header {
-        padding: 0 var(--spacing-sm);
-    }
-
-    .book-cards-container {
-        padding: var(--spacing-md) var(--spacing-sm);
-        gap: var(--spacing-sm);
-    }
-} */
-
 /* TABLET SIZE */
 
 @media only screen and (max-width: 800px) {
@@ -455,6 +458,14 @@ ul {
         width: 50px;
         height: 50px;
         border-radius: 50%;
+    }
+
+    .form-container {
+        min-width: 100%;
+    }
+
+    .form .form-field {
+        padding: 0;
     }
 
     .book-cards-container {

@@ -166,8 +166,8 @@ function setEventListeners(e) {
     const addBookBtn = document.querySelector(".add-book-btn");
 
     function toggleDisplay() {
-        const formContainer = document.querySelector(".form-container");
-        formContainer.classList.toggle("no-display");
+        const modal = document.querySelector(".modal-outer");
+        modal.classList.toggle("no-display");
     }
 
     addBookBtn.addEventListener("click", toggleDisplay);
